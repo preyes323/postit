@@ -12,6 +12,20 @@ class PostsController < ApplicationController
   end
 
   def create
-    byebug
+    @post = Post.new(post_params)
+    @post.user = User.first
+
+    if @post.save
+      flash[:notice] = 'Your post was created'
+      redirect_to posts_path
+    else
+      render 'new'
+    end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit!
   end
 end
