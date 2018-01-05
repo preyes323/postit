@@ -1,24 +1,20 @@
-<% if @post.errors.any? %>
-  <div class="alert alert-error">
-    <h5>There were some errors:</h5>
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render 'shared/form_errors', object: @post %>
 
-<%= form_for @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<div class="well">
+  <%= form_for @post do |f| %>
+    <div class="control-group">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="control-group">
+      <%= f.label :url, 'URL' %>
+      <%= f.text_field :url %>
+    </div>
+    <div class="control-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 5 %>
+    </div>
 
-  <%= f.label :url, "URL" %>
-  <%= f.text_field :url %>
-
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-
-  <br>
   <%= f.submit nil, { class: "btn btn-primary" } %>
-<% end %>
+  <% end %>
+</div>

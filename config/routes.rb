@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   resources :posts, except: :destroy
+  resources :categories, only: %i[create new show]
 end
