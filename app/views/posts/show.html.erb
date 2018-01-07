@@ -9,3 +9,20 @@
 <%= render 'shared/content_title', title: @post.title %>
 
 <p><%= @post.description %></span><hr>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= render 'shared/form_errors', object: @comment %>
+
+  <div class="control-group">
+    <%= f.label :body, 'Leave a comment' %>
+    <%= f.text_area :body, class: 'span4', rows: 3 %>
+  </div>
+
+  <%= f.submit nil, class: 'btn btn-primary' %>
+<% end %>
+
+<% if @post.comments.size > 0 %>
+  <h5>Comments:</h5>
+<% end %>
+
+<%= render @post.comments %>
