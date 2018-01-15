@@ -12,6 +12,11 @@
       <%= f.password_field :password %>
     </div>
 
-    <%= f.submit "Register", class: "btn btn-success" %>
+    <% if @user.new_record? %>
+      <%= f.submit "Register", class: "btn btn-success" %>
+    <% else %>
+      <%= f.submit "Update Profile", class: "btn btn-success" %>
+    <% end %>
+
   <% end %>
 </div>
