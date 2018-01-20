@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show update edit]
+  before_action :set_post, only: %i[show update edit vote]
   before_action :require_login, except: %i[index show]
 
   def index
@@ -37,7 +37,17 @@ class PostsController < ApplicationController
     end
   end
 
-  def vote; end
+  def vote
+    post_vote = Vote.create voteable: @post, user: current_user, vote: params.permit(:vote)[:vote]
+
+    if post_vote.valid?
+      flash[:notice] = 'Your vote was counted.'
+    else
+      flash[:error] = "You've already voted for this comment"
+    end
+
+    redirect_back fallback_location: root_path
+  end
 
   private
 

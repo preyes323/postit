@@ -14,5 +14,16 @@ class CommentsController < ApplicationController
     end
   end
 
-  def vote; end
+  def vote
+    comment = Comment.find params[:id]
+    comment_vote = Vote.create voteable: comment, user: current_user, vote: params.permit(:vote)[:vote]
+
+    if comment_vote.valid?
+      flash[:notice] = 'Your vote was counted.'
+    else
+      flash[:error] = "You've already voted for this comment"
+    end
+
+    redirect_back fallback_location: root_path
+  end
 end
