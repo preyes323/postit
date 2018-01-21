@@ -41,12 +41,14 @@ class PostsController < ApplicationController
     post_vote = Vote.create voteable: @post, user: current_user, vote: params.permit(:vote)[:vote]
 
     if post_vote.valid?
-      flash[:notice] = 'Your vote was counted.'
+      flash.now[:notice] = 'Your vote was counted.'
     else
-      flash[:error] = "You've already voted for this comment"
+      flash.now[:error] = "You've already voted for this comment"
     end
 
-    redirect_back fallback_location: root_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
