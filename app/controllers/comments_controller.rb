@@ -15,15 +15,17 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    comment = Comment.find params[:id]
-    comment_vote = Vote.create voteable: comment, user: current_user, vote: params.permit(:vote)[:vote]
+    @comment = Comment.find params[:id]
+    comment_vote = Vote.create voteable: @comment, user: current_user, vote: params.permit(:vote)[:vote]
 
     if comment_vote.valid?
-      flash[:notice] = 'Your vote was counted.'
+      flash.now[:notice] = 'Your vote was counted.'
     else
-      flash[:error] = "You've already voted for this comment"
+      flash.now[:error] = "You've already voted for this comment"
     end
 
-    redirect_back fallback_location: root_path
+    respond_to do |format|
+      format.js
+    end
   end
 end

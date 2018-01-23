@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     if post_vote.valid?
       flash.now[:notice] = 'Your vote was counted.'
     else
-      flash.now[:error] = "You've already voted for this comment"
+      flash.now[:error] = "You've already voted for this post"
     end
 
     respond_to do |format|
