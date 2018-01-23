@@ -1,3 +1,0 @@
-$("#main .span12 .alert").remove();
-$("#main .span12").prepend("<%= j render 'layouts/messages' %>");
-$("#post_<%= @post.id %>_votes").html("<%= @post.total_votes %> votes");

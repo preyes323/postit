@@ -1,3 +1,3 @@
 $("#main .span12 .alert").remove();
 $("#main .span12").prepend("<%= j render 'layouts/messages' %>");
-$("#comment_<%= @comment.id %>_votes").html("<%= @comment.total_votes %> votes");
+$("#comment_<%= @comment.to_param %>_votes").html("<%= @comment.total_votes %> votes");
