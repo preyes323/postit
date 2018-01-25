@@ -16,6 +16,6 @@ module Postit
     # -- all .rb files in that directory are automatically loaded.
 
     # Run "rake -D time"
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Central Time (US & Canada)'
   end
 end
