@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy', as: 'logout'
   get '/login' => 'sessions#new', as: 'login'
   post '/login' => 'sessions#create'
+  get '/pin' => 'sessions#pin', as: 'pin'
+  post '/pin' => 'sessions#pin'
 
   resources :posts, except: :destroy do
     member do

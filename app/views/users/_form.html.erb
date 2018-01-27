@@ -17,6 +17,11 @@
       <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.country_zones('PH') %>
     </div>
 
+    <div class="control-group">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+
     <% if @user.new_record? %>
       <%= f.submit "Register", class: "btn btn-success" %>
     <% else %>
